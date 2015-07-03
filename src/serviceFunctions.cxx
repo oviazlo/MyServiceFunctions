@@ -9,6 +9,26 @@ vector<string> preselectList(const string& pat, vector<string> inVec){
   return outVec;
 }
 
+vector<string> GetDirectories(const char *dirname)
+{
+  vector<string> outVec;
+  TSystemDirectory dir(dirname, dirname);
+  TList *files = dir.GetListOfFiles();
+  if (files) { 
+    TSystemFile *file;
+    TString fname;
+    TIter next(files);
+    while ((file=(TSystemFile*)next())) {
+      fname = file->GetName();
+      if (file->IsDirectory()) {
+	outVec.push_back(fname.Data());
+      }
+    }
+  }
+  sort(outVec.begin(), outVec.end());
+  
+  return outVec;
+}
 
 vector<string> list_files(const char *dirname, const char *ext)
 {

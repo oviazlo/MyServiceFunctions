@@ -35,6 +35,9 @@ void printSomeArrayElements(vector<double> inVec, unsigned int scale, string exp
 /// get list of files in directory
 vector<string> list_files(const char *dirname="./", const char *ext=".root");
 
+/// get directories inside a specific directory
+vector<string> GetDirectories(const char *dirname);
+
 /// preselect items from input list which satisfy specific pattern
 vector<string> preselectList(const string& pat, vector<string> inVec);
 
