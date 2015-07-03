@@ -20,6 +20,7 @@ vector<string> GetDirectories(const char *dirname)
     TIter next(files);
     while ((file=(TSystemFile*)next())) {
       fname = file->GetName();
+      cout << "[DEBUG]\t" << fname << endl;
       if (file->IsDirectory()) {
 	outVec.push_back(fname.Data());
       }
