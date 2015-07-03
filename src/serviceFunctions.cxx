@@ -460,4 +460,32 @@ TStyle* AtlasStyle(bool drawStatBox)
 }
 
 
+vector<string> ReadFileToVec(const string path){
 
+  vector<string> outVec;
+
+  ifstream myfile (path.c_str());
+  string line;
+  bool notEmpty = false;
+  if (myfile.is_open())
+  {
+    while ( myfile.good() )
+    {
+      getline (myfile,line);
+      if (line=="") continue;
+      if (line.at(0) == '#') continue;
+      
+      outVec.push_back(line);
+    }
+    myfile.close();
+  }
+  else cout << endl << "[ERROR]\tUnable to open file in ReadFileToVec() - file: " << path << endl; 
+  if (notEmpty){ 
+    return outVec;
+  }
+  else{
+    vector<string> emptyVec;
+    return emptyVec;
+  }
+
+}

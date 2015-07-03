@@ -110,4 +110,7 @@ vector<TH1*> GetAllHistInFile (string inFile);
 void SetAtlasStyle(bool drawStatBox = false);
 TStyle* AtlasStyle(bool drawStatBox = false);
 
+/// read all lines to vec, except empty and comment (start with "#") lines
+vector<string> ReadFileToVec(const string path);
+
 #endif
