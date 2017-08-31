@@ -8,10 +8,13 @@ OBJ_FILES := $(addprefix obj/,$(notdir $(CXX_FILES:.cxx=.o)))
 
 LIB_NAME = MyServiceFunctions
 
-all: lib$(LIB_NAME).so
+all: obj lib$(LIB_NAME).so
 
 clean:
-	rm lib$(LIB_NAME).so obj/*o MyDict.cxx MyDict.h MyDict_rdict.pcm
+	rm -r lib$(LIB_NAME).so obj MyDict.cxx MyDict.h MyDict_rdict.pcm
+
+obj: 
+	mkdir obj
 
 MyDict.cxx: $(INC_FILES) $(LINKDEF_FILE)
 	rootcint -f $@ -c $(CXX_FLAGS) -p $^
