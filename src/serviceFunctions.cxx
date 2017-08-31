@@ -490,3 +490,21 @@ vector<string> ReadFileToVec(const string path){
   }
 
 }
+
+string getDirNameFromAbsolutePath(string absolutePath){
+	vector<string> tmpVec = GetSplittedWords(absolutePath,"/");
+	string dirName = "";
+	for (auto i=0; i<(tmpVec.size()-1); i++){
+		dirName += "/" + tmpVec[i];
+	}
+	dirName += "/";
+	return dirName;
+}
+
+string getFileNameFromAbsolutePath(string absolutePath){
+	return absolutePath.substr(getDirNameFromAbsolutePath(absolutePath).size()-1,absolutePath.size()-1);
+}
+
+// vector<string> getFilesMatchingPattern(string inPattern){
+//         GetSplittedWords(fullFileName,"/")
+// }

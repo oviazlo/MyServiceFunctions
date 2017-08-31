@@ -50,7 +50,7 @@ vector<string> GetSplittedWords(const string inputString, const string splitChar
 
 string GetFileExtention(const string fullFileName);
 
-/// example: ./someFolder/fileName.exe -> return fileName
+/// example: "./someFolder/fileName.exe" -> return "fileName"
 string GetFileName(const string fullFileName);
 
 /// replace charachter in string
@@ -112,5 +112,8 @@ TStyle* AtlasStyle(bool drawStatBox = false);
 
 /// read all lines to vec, except empty and comment (start with "#") lines
 vector<string> ReadFileToVec(const string path);
+
+string getDirNameFromAbsolutePath(string absolutePath);
+string getFileNameFromAbsolutePath(string absolutePath);
 
 #endif
