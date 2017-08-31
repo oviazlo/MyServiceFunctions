@@ -115,5 +115,6 @@ vector<string> ReadFileToVec(const string path);
 
 string getDirNameFromAbsolutePath(string absolutePath);
 string getFileNameFromAbsolutePath(string absolutePath);
+vector<string> getFilesMatchingPattern(string inPattern);
 
 #endif

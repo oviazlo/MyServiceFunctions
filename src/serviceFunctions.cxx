@@ -494,7 +494,7 @@ vector<string> ReadFileToVec(const string path){
 string getDirNameFromAbsolutePath(string absolutePath){
 	vector<string> tmpVec = GetSplittedWords(absolutePath,"/");
 	string dirName = "";
-	for (auto i=0; i<(tmpVec.size()-1); i++){
+	for (auto i=1; i<(tmpVec.size()-1); i++){
 		dirName += "/" + tmpVec[i];
 	}
 	dirName += "/";
@@ -502,9 +502,29 @@ string getDirNameFromAbsolutePath(string absolutePath){
 }
 
 string getFileNameFromAbsolutePath(string absolutePath){
-	return absolutePath.substr(getDirNameFromAbsolutePath(absolutePath).size()-1,absolutePath.size()-1);
+	return absolutePath.substr(getDirNameFromAbsolutePath(absolutePath).size(),absolutePath.size()-1);
 }
 
-// vector<string> getFilesMatchingPattern(string inPattern){
-//         GetSplittedWords(fullFileName,"/")
-// }
+vector<string> getFilesMatchingPattern(string inPattern){
+	string dirName = getDirNameFromAbsolutePath(inPattern);
+	string fileNamePattern = getFileNameFromAbsolutePath(inPattern);
+	vector<string> patternParts = GetSplittedWords(fileNamePattern,"*");
+	vector<string> fileNames = list_files(dirName.c_str(),"");
+	vector<string> outVec;
+	for (auto i=0; i<fileNames.size(); i++){
+		bool matchPattern = true;
+		string tmpWord = fileNames[i];
+		for (auto j=0; j<patternParts.size(); j++){
+			if (tmpWord.find(patternParts[j]) == string::npos){
+				matchPattern = false;
+				break;
+			}
+			else{
+				tmpWord = tmpWord.substr(tmpWord.find(patternParts[j])+patternParts[j].size(),tmpWord.size());
+			}
+		}
+		if (matchPattern)
+			outVec.push_back(dirName+fileNames[i]);
+	}
+	return outVec;
+}
