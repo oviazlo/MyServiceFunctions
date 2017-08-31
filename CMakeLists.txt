@@ -17,7 +17,7 @@ LIST ( APPEND CMAKE_LD_FLAGS "-flto -O3 -ggdb" )
 find_package ( ROOT REQUIRED )
 include(${ROOT_USE_FILE})
 
-ADD_SUBDIRECTORY ( ${PROJECT_SOURCE_DIR}/testLib )
+ADD_SUBDIRECTORY ( ${PROJECT_SOURCE_DIR}/libTesting )
 
 MESSAGE (STATUS "*** Build Type ${CMAKE_BUILD_TYPE} ***" )
 MESSAGE (STATUS "*** Compiler Flags:  ${CMAKE_CXX_FLAGS}"  )
