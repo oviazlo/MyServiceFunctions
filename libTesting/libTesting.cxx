@@ -1,12 +1,30 @@
 #include "../include/serviceFunctions.h"
 
-int main(){
+int main(int argn, char* argv[]){
 
-	string someAbsPathWithPattern = "/ssd/viazlo/data/CLIC_o3_v13_ILCSoft-2017-08-23_gcc62_photons_v3_files/CLIC_o3_v13_ILCSoft-2017-08-23_gcc62_photons_v3_E20_theta*0*0*";
-	vector<string> tmpVec = getFilesMatchingPattern(someAbsPathWithPattern);
-	for (auto i=0; i<tmpVec.size(); i++){
-		cout << i << ":\t" << tmpVec[i] << endl;
+	vector<std::string> m_fileNames;
+	stringstream strStream;
+
+	cout << "argn: " << argn << endl;
+
+	if (argn < 2) {
+		std::cout << "[WARNING]\tNo input arguments. Exit!" << std::endl;
+		return 0;
 	}
-	cout << endl << "pattern: " << someAbsPathWithPattern << endl;
+	else{
+		for (int i = 1; i < argn; ++i) {
+			strStream << i << ":\t" << argv[i] << endl;
+			vector<string> tmpStrVec = getFilesMatchingPattern(argv[i]);
+			m_fileNames.insert(m_fileNames.end(), tmpStrVec.begin(), tmpStrVec.end());
+		}
+	}
+
+	cout << endl << "Found files:" << endl;
+	for (auto i=0; i<m_fileNames.size(); i++){
+		cout << i << ":\t" << m_fileNames[i] << endl;
+	}
+	cout << endl << "Patterns:" << endl;
+	cout << strStream.str() << endl;
+
 	return 0;
 }
